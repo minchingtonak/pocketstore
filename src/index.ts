@@ -1,5 +1,7 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { isFn, shouldUpdate, useAvailableEffect } from './utils';
+
+export type SetStoreAction<T> = T | ((prevStore: T) => T);
 
 export type Mapper<StoreType = unknown, MappedType = unknown> = (
 	s: StoreType
@@ -10,16 +12,16 @@ export type Reducer<StoreType, ActionType> = (
 	action: ActionType
 ) => StoreType;
 
-export type StoreFunctions<T> = {
+export type StoreFns<T> = {
 	getStore: () => T;
-	setStore: (newStore: SetStateAction<T>) => void;
+	setStore: (newStore: SetStoreAction<T>) => void;
 	useStore: {
 		(): T;
 		<MappedType>(mapper: Mapper<T, MappedType>): MappedType;
 	};
 };
 
-export type ReducerStoreFunctions<T, A> = {
+export type ReducerStoreFns<T, A> = {
 	getStore: () => T;
 	dispatch: (action: A) => void;
 	useStore: {
@@ -28,20 +30,20 @@ export type ReducerStoreFunctions<T, A> = {
 	};
 };
 
-export type CreateStore = {
-	<T = undefined>(): StoreFunctions<T | undefined>;
-	<T>(initialValue: T): StoreFunctions<T>;
-	<T, A>(initialValue: T, reducer: Reducer<T, A>): ReducerStoreFunctions<T, A>;
+export type CreateStoreFn = {
+	<T = undefined>(): StoreFns<T | undefined>;
+	<T>(initialValue: T): StoreFns<T>;
+	<T, A>(initialValue: T, reducer: Reducer<T, A>): ReducerStoreFns<T, A>;
 };
 
-const createStore: CreateStore = <T, A>(
+const createStore: CreateStoreFn = <T, A>(
 	initialValue?: T,
 	reducer?: Reducer<T | undefined, A>
 ) => {
 	type Listener = {
 		mapped: unknown;
 		mapper?: Mapper;
-		updater: Dispatch<unknown>;
+		updater: (action: unknown) => void;
 	};
 
 	let store = initialValue;
@@ -58,7 +60,7 @@ const createStore: CreateStore = <T, A>(
 		});
 	};
 
-	const setStore = (newStore: SetStateAction<T | undefined>) => {
+	const setStore = (newStore: SetStoreAction<T | undefined>) => {
 		store = isFn<(prev: T | undefined) => T | undefined>(newStore)
 			? newStore(store)
 			: newStore;
