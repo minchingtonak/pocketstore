@@ -1,6 +1,9 @@
 {
 	"name": "tinystore",
 	"version": "1.0.0",
+	"repository": {
+		"url": "https://github.com/minchingtonak/tinystore"
+	},
 	"files": [
 		"dist"
 	],
