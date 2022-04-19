@@ -20,11 +20,11 @@ const { getStore, setStore, useStore } = createStore<string | number>(
 // with reducer
 type StoreAction =
 	| {
-			type: 'add';
-			value: string;
+		type: 'add';
+		value: string;
 	  }
 	| {
-			type: 'clear';
+		type: 'clear';
 	  };
 
 const reducer = (store: string, action: StoreAction) => {
