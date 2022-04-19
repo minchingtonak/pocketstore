@@ -7,6 +7,8 @@ Tiny, dead-simple, TypeScript-first global state store for react/preact.
 ### createStore
 
 ```ts
+import createStore from 'tinystore';
+
 const initialValue = 'hello world';
 
 // basic
@@ -44,6 +46,8 @@ const { getStore, dispatch, useStore } = createStore(initialValue, reducer);
 ### useStore hook
 
 ```tsx
+import createStore from 'tinystore';
+
 const { setStore: setUserData, useStore: useUserData } = createStore({
 	name: '',
 	count: 0,

@@ -2,16 +2,27 @@
 	"name": "tinystore",
 	"version": "1.0.0",
 	"repository": {
-		"url": "https://github.com/minchingtonak/tinystore"
+		"type": "git",
+		"url": "git+https://github.com/minchingtonak/tinystore.git"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"src"
 	],
 	"main": "./dist/tinystore.umd.js",
 	"module": "./dist/tinystore.es.js",
+	"types": "./dist/tinystore.es.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/tinystore.es.js",
+			"require": "./dist/tinystore.umd.js"
+		}
+	},
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build"
+		"build": "vite build",
+		"publish": "vite build && npm publish",
+		"clean": "rm -rf dist"
 	},
 	"devDependencies": {
 		"@types/eslint": "^8.4.1",
@@ -25,13 +36,13 @@
 		"eslint-plugin-react-hooks": "^4.4.0",
 		"eslint-plugin-unused-imports": "^2.0.0",
 		"optionator": "^0.9.1",
+		"react-dom": ">=16.8.0",
 		"typescript": "^4.5.4",
 		"vite": "^2.9.0",
 		"vite-dts": "^1.0.4",
 		"vite-plugin-checker": "^0.4.5"
 	},
 	"peerDependencies": {
-		"react": "^16.8.0",
-		"react-dom": "^16.8.0"
+		"react": ">=16.8.0"
 	}
 }
