@@ -1,13 +1,13 @@
-# tinystore
+# pocketstore
 
-Tiny, dead-simple, TypeScript-first global state store for react/preact.
+A pocket-sized, TypeScript-first global state store for react/preact.
 
 ## Usage
 
 ### createStore
 
 ```ts
-import createStore from 'tinystore';
+import createStore from 'pocketstore';
 
 const initialValue = 'hello world';
 
@@ -46,7 +46,7 @@ const { getStore, dispatch, useStore } = createStore(initialValue, reducer);
 ### useStore hook
 
 ```tsx
-import createStore from 'tinystore';
+import createStore from 'pocketstore';
 
 const { setStore: setUserData, useStore: useUserData } = createStore({
 	name: '',

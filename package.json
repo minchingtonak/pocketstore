@@ -1,21 +1,21 @@
 {
-	"name": "tinystore",
+	"name": "pocketstore",
 	"version": "1.0.0",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/minchingtonak/tinystore.git"
+		"url": "git+https://github.com/minchingtonak/pocketstore.git"
 	},
 	"files": [
 		"dist",
 		"src"
 	],
-	"main": "./dist/tinystore.umd.js",
-	"module": "./dist/tinystore.es.js",
-	"types": "./dist/tinystore.es.d.ts",
+	"main": "./dist/pocketstore.umd.js",
+	"module": "./dist/pocketstore.es.js",
+	"types": "./dist/pocketstore.es.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/tinystore.es.js",
-			"require": "./dist/tinystore.umd.js"
+			"import": "./dist/pocketstore.es.js",
+			"require": "./dist/pocketstore.umd.js"
 		}
 	},
 	"scripts": {
